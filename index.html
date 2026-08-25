@@ -72,7 +72,7 @@ import{getAuth,GoogleAuthProvider,signInWithPopup,signOut,onAuthStateChanged}fro
 import{getFirestore,doc,getDoc,setDoc,onSnapshot,serverTimestamp}from'https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js';
 
 const firebaseConfig={apiKey:'AIzaSyBO1kBDIjWSJ6uqsIIa0SRRocItCR_9vGE',authDomain:'personal-medical-portal.firebaseapp.com',projectId:'personal-medical-portal',storageBucket:'personal-medical-portal.firebasestorage.app',messagingSenderId:'874758213505',appId:'1:874758213505:web:3a0850a5b535703a3b2280'};
-const allowedEmails=['iphull2000@gmail.com','phullmanya@gmail.com'];
+const allowedEmails=['iphull2000@gmail.com','phullmanya@gmail.com','vphull@gmail.com'];
 const app=initializeApp(firebaseConfig),auth=getAuth(app),firestore=getFirestore(app),familyRef=doc(firestore,'familyPortals','phull-family');
 const gate=document.getElementById('authGate'),authMessage=document.getElementById('authMessage'),signInButton=document.getElementById('googleSignIn');
 let signedInUser=null,stopCloudListener=null,cloudHasData=false,syncTimer=null;
