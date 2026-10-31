@@ -460,5 +460,79 @@ body:after{content:'';position:fixed;z-index:-1;right:-140px;bottom:-160px;width
 .auth-mark:after{border-color:#FFA94D}
 .auth-card h1{background:linear-gradient(100deg,#04302D,#0A8A74 70%,#FF7E5F);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .auth-card button{background:linear-gradient(135deg,#14BE97,#0A8A8F);box-shadow:0 12px 26px #0E9F8344}
+
+/* =====================================================================
+   GLASSMORPHISM LAYER — frosted translucent surfaces floating over an
+   animated aurora. Override-only: no HTML, JS or original CSS touched.
+   ===================================================================== */
+:root{--glass:rgba(255,255,255,.42);--glass-hi:rgba(255,255,255,.64);--glass-line:rgba(255,255,255,.72);--glass-shadow:0 8px 32px rgba(31,80,120,.14);--blur:blur(22px) saturate(170%)}
+@keyframes aurora{0%{transform:translate3d(0,0,0) rotate(0) scale(1)}50%{transform:translate3d(3%,-4%,0) rotate(8deg) scale(1.1)}100%{transform:translate3d(-4%,3%,0) rotate(-6deg) scale(1.05)}}
+@keyframes floatOrb{0%,100%{transform:translate3d(0,0,0) rotate(0)}50%{transform:translate3d(-30px,40px,0) rotate(12deg)}}
+@keyframes floatOrb2{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(40px,-36px,0)}}
+@keyframes sheen{0%,55%{left:-70%}100%{left:140%}}
+
+/* ---------- Aurora backdrop + floating glass orbs ---------- */
+body{background:linear-gradient(135deg,#DDF7F0 0%,#E3EDFF 48%,#FBE5EE 100%) fixed}
+body:after{inset:-25%;width:auto;height:auto;right:auto;bottom:auto;border-radius:0;opacity:1;filter:blur(34px);
+background:radial-gradient(38% 38% at 18% 22%,#2DD4A8B3,transparent 70%),radial-gradient(34% 34% at 82% 16%,#7C8CFFA6,transparent 70%),radial-gradient(40% 40% at 72% 84%,#FF8FABA0,transparent 70%),radial-gradient(30% 30% at 22% 80%,#FFC857A6,transparent 70%);
+animation:aurora 30s ease-in-out infinite alternate}
+html:before,html:after{content:'';position:fixed;z-index:-1;border-radius:50%;pointer-events:none;background:linear-gradient(145deg,rgba(255,255,255,.75),rgba(255,255,255,.08));border:1px solid rgba(255,255,255,.75);box-shadow:0 30px 60px rgba(60,110,230,.18),inset 0 0 40px rgba(255,255,255,.55)}
+html:before{top:9%;right:7%;width:300px;height:300px;animation:floatOrb 18s ease-in-out infinite}
+html:after{bottom:6%;left:24%;width:210px;height:210px;animation:floatOrb2 22s ease-in-out infinite}
+.content{background-image:none}
+.work:before,.content:after{opacity:.3}
+
+/* ---------- Frosted cards ---------- */
+.panel,.stat,.record,.overview-inline,.care-doctor,.doctor-card,.family div,.photo-editor{background:var(--glass)!important;-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);border:1px solid var(--glass-line)!important;box-shadow:var(--glass-shadow),inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.28)!important}
+.panel .record,.overview-inline .record,.panel .family div{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(255,255,255,.4)!important;box-shadow:0 4px 14px rgba(31,80,120,.08),inset 0 1px 0 rgba(255,255,255,.9)!important}
+.panel:hover,.overview-inline:hover,.stat:hover,.record:hover,.care-doctor:hover,.doctor-card:hover{background:var(--glass-hi)!important;box-shadow:0 22px 50px rgba(31,80,120,.2),0 0 0 1px var(--s2,rgba(255,255,255,.95)),inset 0 1px 0 #fff!important}
+.stat.inline-active{background:linear-gradient(135deg,rgba(255,255,255,.78),color-mix(in srgb,var(--c1,#12B58F) 24%,rgba(255,255,255,.5)))!important}
+.health-tabs .stat{background:transparent!important;border:0!important;box-shadow:none!important;-webkit-backdrop-filter:none;backdrop-filter:none}
+.health-tabs .stat.inline-active{background:rgba(255,255,255,.78)!important;box-shadow:0 6px 18px rgba(31,80,120,.15),inset 0 1px 0 #fff!important}
+.quick{background-image:linear-gradient(120deg,rgba(45,212,168,.3),rgba(255,255,255,.45),rgba(255,143,171,.28),rgba(124,140,255,.26))!important;background-color:transparent!important;-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);border:1px solid var(--glass-line)!important;box-shadow:var(--glass-shadow),inset 0 1px 0 rgba(255,255,255,.95)!important;position:relative;overflow:hidden}
+.quick:after{content:'';position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:sheen 7s ease-in-out infinite;pointer-events:none}
+.care-doctor:after{background:radial-gradient(circle,rgba(255,184,77,.35),transparent 68%)}
+.mini:hover{background:rgba(255,255,255,.45)}
+.empty{background:rgba(255,255,255,.3);border-radius:18px}
+
+/* ---------- Glass sidebar ---------- */
+.side{background:linear-gradient(165deg,rgba(12,85,80,.66),rgba(7,59,56,.58) 52%,rgba(38,44,120,.5))!important;-webkit-backdrop-filter:blur(28px) saturate(170%);backdrop-filter:blur(28px) saturate(170%);border-right:1px solid rgba(255,255,255,.32);box-shadow:14px 0 50px rgba(20,60,110,.2),inset -1px 0 0 rgba(255,255,255,.18)}
+.side nav button.active{background:linear-gradient(90deg,rgba(255,255,255,.28),rgba(255,255,255,.08));-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.38),0 10px 26px rgba(0,0,0,.2)}
+.side nav button:hover{background:rgba(255,255,255,.16)}
+.privacy{background:rgba(255,255,255,.1)!important;border:1px solid rgba(255,255,255,.3)!important;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:inset 0 1px 0 rgba(255,255,255,.35)}
+
+/* ---------- Glass top bar, search & pills ---------- */
+.work>.top{background:rgba(255,255,255,.42)!important;-webkit-backdrop-filter:blur(26px) saturate(180%)!important;backdrop-filter:blur(26px) saturate(180%)!important;border:1px solid rgba(255,255,255,.78)!important;box-shadow:0 10px 36px rgba(31,80,120,.14),inset 0 1px 0 #fff!important}
+.top .profile-pills{background:rgba(255,255,255,.34)!important;border:1px solid rgba(255,255,255,.8)!important;box-shadow:inset 0 1px 0 #fff,0 8px 22px rgba(31,80,120,.1)!important}
+.search{background-color:rgba(255,255,255,.5)!important;border:1px solid rgba(255,255,255,.88)!important;box-shadow:inset 0 2px 6px rgba(31,80,120,.07)}
+.search:focus{background-color:rgba(255,255,255,.88)!important;box-shadow:0 0 0 4px rgba(14,159,131,.2),0 10px 28px rgba(31,80,120,.14)}
+.clinical-avatar{background:linear-gradient(145deg,rgba(255,255,255,.75),rgba(255,255,255,.3))!important}
+
+/* ---------- Glass buttons ---------- */
+.panel-head button,.secondary,.actions button,.quick button,.health-area-head button,.modal footer button,.health-tabs .add-area-tab{background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.9);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:0 4px 14px rgba(31,80,120,.08),inset 0 1px 0 #fff}
+.panel-head button:hover,.secondary:hover,.actions button:hover,.quick button:hover,.health-area-head button:hover,.modal footer button:hover{background:rgba(255,255,255,.82);border-color:#fff}
+.clinical-actions button{background:rgba(255,255,255,.5)!important;border-color:rgba(255,255,255,.9)!important}
+.primary{border:1px solid rgba(255,255,255,.45)!important;box-shadow:0 10px 26px rgba(14,159,131,.38),inset 0 1px 0 rgba(255,255,255,.5)}
+
+/* ---------- Glass modal & forms ---------- */
+.shade{background:rgba(18,48,90,.34)!important;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.modal{background:rgba(255,255,255,.62)!important;-webkit-backdrop-filter:blur(34px) saturate(185%);backdrop-filter:blur(34px) saturate(185%);border:1px solid rgba(255,255,255,.85);box-shadow:0 40px 100px rgba(18,48,90,.35),inset 0 1px 0 #fff}
+.modal>header{background:linear-gradient(120deg,rgba(255,255,255,.55),rgba(255,236,224,.4))}
+.form input,.form select,.form textarea,.modal input,.modal select,.modal textarea{background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.9);box-shadow:inset 0 2px 5px rgba(31,80,120,.06)}
+.form input:focus,.form select:focus,.form textarea:focus,.modal input:focus,.modal select:focus,.modal textarea:focus{background:rgba(255,255,255,.9)}
+
+/* ---------- Glass mobile nav ---------- */
+.bottom{background:rgba(255,255,255,.52)!important;-webkit-backdrop-filter:blur(26px) saturate(180%);backdrop-filter:blur(26px) saturate(180%);border-top:1px solid rgba(255,255,255,.85);box-shadow:0 -10px 34px rgba(31,80,120,.14),inset 0 1px 0 #fff}
+
+/* ---------- Glass sign-in ---------- */
+.auth-gate{background:radial-gradient(circle at 20% 18%,#2DD4A8D0,transparent 42%),radial-gradient(circle at 82% 14%,#7C8CFFC0,transparent 40%),radial-gradient(circle at 76% 86%,#FF8FABB0,transparent 42%),linear-gradient(145deg,#0B2C46,#14507A)}
+.auth-card{background:rgba(255,255,255,.16)!important;-webkit-backdrop-filter:blur(30px) saturate(180%);backdrop-filter:blur(30px) saturate(180%);border:1px solid rgba(255,255,255,.5);color:#fff;box-shadow:0 36px 90px rgba(3,20,40,.45),inset 0 1px 0 rgba(255,255,255,.7)}
+.auth-card h1{background:linear-gradient(100deg,#fff,#D4FFF1 55%,#FFE3CC);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.auth-card p{color:#FFD9A8}
+.auth-card span{color:rgba(255,255,255,.88)}
+.auth-card button{border:1px solid rgba(255,255,255,.5);box-shadow:0 12px 30px rgba(14,159,131,.45),inset 0 1px 0 rgba(255,255,255,.5)}
+
+/* ---------- Fallback if the browser lacks backdrop-filter ---------- */
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.panel,.stat,.record,.overview-inline,.care-doctor,.doctor-card,.modal,.work>.top,.bottom{background:rgba(255,255,255,.88)!important}.side{background:#0A4743!important}.auth-card{background:rgba(10,60,70,.85)!important}}
 </style>
 </body></html>
