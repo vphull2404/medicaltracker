@@ -188,4 +188,161 @@ onAuthStateChanged(auth,user=>{
     if(!cloudHasData&&hasRecords(legacyDb))setTimeout(()=>{if(confirm('Existing records were found in this browser. Import them to the shared family cloud now?'))window.importBrowserRecords()},250)
   },error=>{console.error(error);showGate(error.code==='permission-denied'?'Firestore access was denied. Publish the family security rules provided with this version, then refresh the page.':'The family records could not be loaded. Check your internet connection and try again.',false)})
 });
-</script></body></html>
+</script><style id="design-uplift">
+/* =====================================================================
+   DESIGN UPLIFT — purely additive. No HTML structure, JavaScript or
+   existing CSS has been modified; this block only layers visual polish
+   and animation on top of the existing classes.
+   ===================================================================== */
+:root{--ease:cubic-bezier(.22,1,.36,1);--navy:#123B5D;--blue:#2F80A7;--aqua:#43A89B;--aqua-2:#55B6B0;--focus:0 0 0 4px #2F80A724}
+html{scroll-behavior:smooth}
+body{font-family:"Inter","Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;background:linear-gradient(180deg,#F7FAFC 0%,#EEF5F8 100%) fixed}
+::selection{background:#2F80A733;color:#0B2C46}
+::placeholder{color:#8C9DA8}
+*{scrollbar-width:thin;scrollbar-color:#B9D2DD transparent}
+::-webkit-scrollbar{width:9px;height:9px}::-webkit-scrollbar-thumb{background:#C2D8E1;border-radius:9px;border:2px solid transparent;background-clip:padding-box}::-webkit-scrollbar-thumb:hover{background:#8FBBCD;background-clip:padding-box;border:2px solid transparent}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--aqua);outline-offset:2px}
+
+/* ---------- Keyframes ---------- */
+@keyframes rise{from{opacity:0;transform:translateY(22px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideIn{from{opacity:0;transform:translateX(-26px)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:translateY(26px) scale(.94)}to{opacity:1;transform:none}}
+@keyframes sheet{from{opacity:.4;transform:translateY(60%)}to{opacity:1;transform:none}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes glow{0%,100%{box-shadow:0 8px 22px #08243A66,0 0 0 0 #55B6B055}50%{box-shadow:0 8px 26px #08243A66,0 0 0 9px #55B6B000}}
+@keyframes ring{0%{transform:scale(1);opacity:.9}100%{transform:scale(1.3);opacity:0}}
+@keyframes bgflow{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
+@keyframes driftSide{0%,100%{transform:rotate(-16deg) translate(0,0)}50%{transform:rotate(-9deg) translate(16px,-14px)}}
+@keyframes driftSide2{0%,100%{transform:rotate(22deg) translate(0,0)}50%{transform:rotate(30deg) translate(-14px,12px)}}
+@keyframes driftWork{0%,100%{transform:rotate(-13deg) translate(0,0)}50%{transform:rotate(-7deg) translate(30px,20px)}}
+@keyframes driftContent{0%,100%{transform:rotate(-12deg) translate(0,0)}50%{transform:rotate(-6deg) translate(-22px,16px)}}
+@keyframes orbA{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(90px,60px) scale(1.15)}}
+@keyframes orbB{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-80px,-70px) scale(1.2)}}
+@keyframes shimmerLine{0%{background-position:-200% 0}100%{background-position:200% 0}}
+
+/* ---------- Page-load / re-render entrance ---------- */
+.side{animation:slideIn .9s var(--ease) backwards;box-shadow:14px 0 44px #0B2C4624}
+.work>.top{animation:fadeIn .8s ease backwards}
+#app>*{animation:rise .75s var(--ease) backwards}
+#app>*:nth-child(2){animation-delay:.08s}#app>*:nth-child(3){animation-delay:.16s}#app>*:nth-child(4){animation-delay:.24s}#app>*:nth-child(5){animation-delay:.32s}#app>*:nth-child(n+6){animation-delay:.4s}
+.stats>*,.grid>*,.profile>*,.list>*{animation:rise .7s var(--ease) backwards}
+.stats>*:nth-child(1),.grid>*:nth-child(1),.profile>*:nth-child(1),.list>*:nth-child(1){animation-delay:.18s}
+.stats>*:nth-child(2),.grid>*:nth-child(2),.profile>*:nth-child(2),.list>*:nth-child(2){animation-delay:.26s}
+.stats>*:nth-child(3),.grid>*:nth-child(3),.profile>*:nth-child(3),.list>*:nth-child(3){animation-delay:.34s}
+.stats>*:nth-child(4),.list>*:nth-child(4){animation-delay:.42s}
+.stats>*:nth-child(5),.list>*:nth-child(5){animation-delay:.5s}
+.stats>*:nth-child(n+6),.list>*:nth-child(n+6){animation-delay:.58s}
+/* keep live search typing calm: no replay while results update */
+#app:has(.list>button.record)>*,#app:has(.list>button.record) .list>*{animation:none}
+
+/* ---------- Sidebar ---------- */
+.side:before{animation:driftSide 20s ease-in-out infinite}
+.side:after{animation:driftSide2 26s ease-in-out infinite}
+.brand i{animation:glow 3.8s ease-in-out infinite;transition:transform .5s var(--ease)}
+.brand:hover i{transform:rotate(90deg) scale(1.08)}
+.brand b{letter-spacing:.01em}
+.side nav button{position:relative;transition:background .3s ease,color .3s ease,transform .35s var(--ease),box-shadow .3s}
+.side nav button:hover{transform:translateX(5px)}
+.side nav button.active{background:linear-gradient(90deg,#ffffff26,#ffffff0a);color:#fff;box-shadow:inset 0 0 0 1px #ffffff14,0 8px 20px #06182818}
+.side nav button.active:before{content:'';position:absolute;left:-18px;top:18%;bottom:18%;width:4px;border-radius:0 5px 5px 0;background:linear-gradient(180deg,#8CE3DA,#43A89B);box-shadow:0 0 16px #55B6B0}
+.side nav button span{transition:transform .4s var(--ease)}
+.side nav button:hover span,.side nav button.active span{transform:scale(1.2) rotate(-6deg)}
+.privacy{transition:transform .35s var(--ease),border-color .3s,background .3s}
+.privacy:hover{transform:translateY(-3px);border-color:#55B6B055;background:#ffffff12}
+
+/* ---------- Top bar & search ---------- */
+.search{padding-left:44px;transition:box-shadow .3s,border-color .3s,background-color .3s;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%232F80A7' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:16px center;background-size:17px}
+.search:hover{border-color:#B9D8E4}
+.search:focus{outline:0;border-color:var(--blue);background-color:#fff;box-shadow:var(--focus),0 10px 28px #2F80A71F}
+.clinical-profile,.profile-orb{transition:transform .35s var(--ease)}
+.clinical-profile.selected .clinical-avatar-wrap:after{border:2px solid #43A89B99;animation:ring 2.6s ease-out infinite}
+.clinical-profile.selected .profile-caption{color:var(--blue)}
+
+/* ---------- Headings ---------- */
+.heading h1{letter-spacing:-.02em;padding-bottom:3px;background:linear-gradient(100deg,#0B2C46 15%,#2F80A7 95%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.heading .eyebrow{display:inline-flex;align-items:center;gap:9px}
+.heading .eyebrow:before{content:'';width:26px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--aqua),var(--blue),var(--aqua));background-size:200% 100%;animation:shimmerLine 3.2s linear infinite}
+.heading p{font-size:14.5px}
+.panel h2,.quick h2,.modal h2{letter-spacing:-.01em}
+
+/* ---------- Buttons ---------- */
+.primary{position:relative;overflow:hidden;letter-spacing:.01em;transition:transform .3s var(--ease),box-shadow .3s ease,filter .3s}
+.primary:hover{transform:translateY(-2px);box-shadow:0 14px 30px #2F80A752;filter:saturate(1.1)}
+.primary:active{transform:translateY(0) scale(.97)}
+.primary:after{content:'';position:absolute;top:0;left:-130%;width:55%;height:100%;background:linear-gradient(100deg,transparent,#ffffff59,transparent);transform:skewX(-20deg);transition:left .8s var(--ease);pointer-events:none}
+.primary:hover:after{left:140%}
+.panel-head button,.secondary,.actions button,.quick button,.health-area-head button,.modal footer button{transition:transform .28s var(--ease),box-shadow .28s,background .28s,border-color .28s,color .28s}
+.panel-head button:hover,.secondary:hover,.actions button:hover,.quick button:hover,.health-area-head button:hover,.modal footer button:hover{transform:translateY(-2px);background:#F0F8FA;border-color:#9FCBDC;box-shadow:0 8px 18px #123B5D1A}
+.actions button:last-child:hover{background:#FFF2F0;border-color:#F0BFB8;color:#B54A40}
+.panel-head button:active,.secondary:active,.actions button:active,.quick button:active{transform:scale(.96)}
+
+/* ---------- Cards ---------- */
+.panel,.stat,.record,.overview-inline,.care-doctor,.doctor-card,.quick{transition:transform .4s var(--ease),box-shadow .4s ease,border-color .3s,background .3s}
+.panel:hover,.overview-inline:hover{box-shadow:0 18px 44px #123B5D14,inset 0 1px 0 #fff;border-color:#D5E6EC}
+.stat:hover,.record:hover,.care-doctor:hover{transform:translateY(-4px);box-shadow:0 20px 42px #123B5D1F,inset 0 1px 0 #fff;border-color:#BFDDE8}
+.health-tabs .stat:hover{transform:none;box-shadow:inset 0 -3px 0 var(--aqua)}
+.stat i,.record-icon{background:linear-gradient(135deg,#E8F5F6,#D2EAEE);color:var(--blue);box-shadow:inset 0 0 0 1px #fff;transition:transform .45s var(--ease),background .3s,color .3s,box-shadow .3s}
+.stat:hover i,.record:hover .record-icon,.mini:hover .record-icon{background:linear-gradient(135deg,var(--aqua-2),var(--blue));color:#fff;transform:rotate(-7deg) scale(1.1);box-shadow:0 10px 20px #2F80A744}
+.stat b{letter-spacing:-.02em;color:var(--navy)}
+.record{position:relative}
+.record:before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:13px 0 0 13px;background:linear-gradient(180deg,var(--aqua-2),var(--blue));transform:scaleY(0);transform-origin:top;transition:transform .45s var(--ease);pointer-events:none}
+.record:hover:before{transform:scaleY(1)}
+.mini{transition:background .3s,padding .35s var(--ease)}
+.mini:hover{background:linear-gradient(90deg,#2F80A710,transparent);padding-left:10px}
+.mini em{transition:transform .35s var(--ease),color .3s}
+.mini:hover em{transform:translateX(6px);color:var(--blue)}
+.quick{background-size:220% 220%;animation:bgflow 12s ease-in-out infinite,rise .75s var(--ease) backwards}
+.care-doctor-icon{animation:floaty 4.2s ease-in-out infinite}
+.empty i{animation:floaty 3.6s ease-in-out infinite;box-shadow:0 0 0 9px #E5F3F5B3,0 0 0 18px #E5F3F55E}
+.person i,.side-photo{transition:transform .45s var(--ease)}
+.person:hover i{transform:scale(1.07) rotate(-4deg)}
+.details div{transition:background .3s,padding .3s var(--ease)}
+.details div:hover{background:linear-gradient(90deg,#2F80A709,transparent);padding-left:8px}
+.family div{transition:transform .3s var(--ease),border-color .3s,box-shadow .3s}
+.family div:hover{transform:translateX(4px);border-color:#9FCBDC;box-shadow:0 6px 16px #123B5D12}
+
+/* ---------- Ambient background motion ---------- */
+.work:before{animation:driftWork 24s ease-in-out infinite}
+.content:after{animation:driftContent 28s ease-in-out infinite}
+
+/* ---------- Modal & forms ---------- */
+.shade{animation:fadeIn .3s ease both;-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px)}
+.modal{animation:pop .5s var(--ease) both;box-shadow:0 40px 90px #061B2C55,0 0 0 1px #ffffff80}
+.modal>header{background:linear-gradient(120deg,#F4FAFB,#fff)}
+.modal header button{transition:transform .4s var(--ease),background .25s}
+.modal header button:hover{transform:rotate(90deg);background:#EAF5F7}
+.form input,.form select,.form textarea{transition:border-color .25s,box-shadow .25s,background .25s}
+.form input:hover,.form select:hover,.form textarea:hover{border-color:#9FCBDC}
+.form input:focus,.form select:focus,.form textarea:focus{outline:0;border-color:var(--blue);box-shadow:var(--focus)}
+.form label{letter-spacing:.02em}
+.photo-editor{transition:border-color .3s,background .3s}
+.photo-editor:hover{border-color:var(--blue);background:#F4FAFB}
+
+/* ---------- Mobile nav ---------- */
+.bottom{-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);background:#FFFFFFEB;box-shadow:0 -10px 32px #123B5D16}
+.bottom button{position:relative;transition:color .3s}
+.bottom button span{transition:transform .4s var(--ease)}
+.bottom button.active span{transform:translateY(-3px) scale(1.18)}
+.bottom button.active:before{content:'';position:absolute;top:-6px;left:50%;width:30px;height:3px;margin-left:-15px;border-radius:0 0 5px 5px;background:linear-gradient(90deg,var(--aqua),var(--blue))}
+@media(max-width:650px){.modal{animation-name:sheet;animation-duration:.55s}}
+
+/* ---------- Sign-in gate ---------- */
+.auth-gate{overflow:hidden}
+.auth-gate:before,.auth-gate:after{content:'';position:absolute;border-radius:50%;filter:blur(70px);pointer-events:none;opacity:.5}
+.auth-gate:before{width:440px;height:440px;left:-130px;top:-120px;background:#43A89B;animation:orbA 14s ease-in-out infinite}
+.auth-gate:after{width:500px;height:500px;right:-170px;bottom:-190px;background:#2F80A7;animation:orbB 18s ease-in-out infinite}
+.auth-card{position:relative;z-index:1;animation:pop .95s var(--ease) both;box-shadow:0 36px 90px #061B2C70,inset 0 1px 0 #fff}
+.auth-mark{position:relative;animation:floaty 4s ease-in-out infinite}
+.auth-mark:after{content:'';position:absolute;inset:0;border-radius:18px;border:2px solid #55B6B0;animation:ring 2.6s ease-out infinite}
+.auth-card h1{background:linear-gradient(100deg,#0B2C46,#2F80A7);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;padding-bottom:3px}
+.auth-card button{position:relative;overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s}
+.auth-card button:hover{transform:translateY(-2px);box-shadow:0 16px 32px #2F80A74F}
+.auth-card button:active{transform:scale(.97)}
+.auth-card button:after{content:'';position:absolute;top:0;left:-130%;width:55%;height:100%;background:linear-gradient(100deg,transparent,#ffffff59,transparent);transform:skewX(-20deg);transition:left .8s var(--ease);pointer-events:none}
+.auth-card button:hover:after{left:140%}
+
+/* ---------- Respect reduced-motion preferences ---------- */
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style>
+</body></html>
