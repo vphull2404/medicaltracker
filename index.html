@@ -347,7 +347,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 
 
 /* =====================================================================
-   COLOUR THEME v2 — "Corporate Navy". Deep emerald base, warm coral and
+   COLOUR THEME v2 — "Base". Deep emerald base, warm coral and
    amber accents, colour-coded cards. Everything below is override-only.
    ===================================================================== */
 :root{--ink:#0B2A4A;--muted:#5B6E85;--line:#E3E8EE;--wash:#F7F9FC;--teal:#2A6FBF;--mint:#EBF0F5;--nav:#0A3C73;--navy:#0B2A4A;--blue:#2A6FBF;--aqua:#9CC7E8;--aqua-2:#4C9BD6;--focus:0 0 0 4px #2A6FBF26}
@@ -569,5 +569,187 @@ html:before,html:after{opacity:.5}
 .auth-gate:before{background:#2A6FBF}.auth-gate:after{background:#1A8FA3}
 .bottom button.active:before{background:linear-gradient(90deg,#2A6FBF,#1A8FA3)}
 .stat.inline-active{background:linear-gradient(135deg,rgba(255,255,255,.8),color-mix(in srgb,var(--c1,#2A6FBF) 16%,rgba(255,255,255,.55)))!important}
+
+/* =====================================================================
+   BENTO GRID THEME — modular rounded tiles of different sizes on a calm
+   neutral canvas, one bold hero tile, spring-in motion. Override-only:
+   no HTML, JavaScript or original CSS has been modified.
+   ===================================================================== */
+:root{--ink:#0F172A;--muted:#64748B;--line:#E3E6EC;--teal:#2F6BFF;--navy:#0F172A;--blue:#2F6BFF;--aqua:#18A0FB;--aqua-2:#2F6BFF;--focus:0 0 0 4px rgba(47,107,255,.2);--glass:#fff;--glass-hi:#fff;--glass-line:#E3E6EC;--tile-shadow:0 1px 2px rgba(15,23,42,.04),0 10px 30px rgba(15,23,42,.06);--tile-shadow-hi:0 2px 4px rgba(15,23,42,.05),0 24px 48px rgba(15,23,42,.13);--spring:cubic-bezier(.34,1.3,.5,1)}
+@keyframes bentoIn{from{opacity:0;transform:translateY(26px) scale(.9)}to{opacity:1;transform:none}}
+@keyframes heroGlow{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-14%,10%) scale(1.15)}}
+@keyframes bobble{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-5px) rotate(-4deg)}}
+@keyframes tilePulse{0%,100%{opacity:.5}50%{opacity:1}}
+
+/* ---------- Canvas ---------- */
+body{font-family:"Inter","Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;background:#EEF0F4 fixed}
+body:before,html:before,html:after{display:none}
+body:after{filter:blur(40px);background:radial-gradient(40% 40% at 14% 12%,rgba(47,107,255,.15),transparent 70%),radial-gradient(35% 35% at 92% 8%,rgba(18,163,127,.13),transparent 70%),radial-gradient(42% 42% at 80% 92%,rgba(245,166,35,.11),transparent 70%)}
+.work:before,.content:after{display:none}
+
+/* ---------- Sidebar: dark floating tile ---------- */
+.side{background:linear-gradient(180deg,#111827,#0A101C)!important;border:0;border-radius:0 30px 30px 0;box-shadow:12px 0 40px rgba(15,23,42,.18);-webkit-backdrop-filter:none;backdrop-filter:none}
+.side:before{background:radial-gradient(circle at 80% 12%,rgba(47,107,255,.35) 0 90px,transparent 91px),radial-gradient(circle at 10% 90%,rgba(18,163,127,.28) 0 80px,transparent 81px);animation:driftSide 20s ease-in-out infinite}
+.side:after{display:none}
+.brand i{background:linear-gradient(135deg,#2F6BFF,#18A0FB);color:#fff;border-radius:14px;box-shadow:0 10px 24px rgba(47,107,255,.5);text-shadow:none}
+.brand b{color:#fff;letter-spacing:-.01em}.brand small{color:#8FA0BC}
+.side nav button{color:#B6C2D8;border-radius:14px;font-weight:600}
+.side nav button:hover{background:rgba(255,255,255,.08);color:#fff}
+.side nav button.active{background:#2F6BFF!important;color:#fff!important;box-shadow:0 10px 24px rgba(47,107,255,.5)}
+.side nav button.active:before{display:none}
+.privacy{background:rgba(255,255,255,.06)!important;border:1px solid rgba(255,255,255,.1)!important;border-radius:20px;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+.privacy b{color:#fff}.privacy p{color:#8FA0BC}
+.account-card small{color:#8FA0BC}
+
+/* ---------- Top bar ---------- */
+.work>.top{background:#fff!important;border:1px solid var(--line)!important;border-radius:24px;box-shadow:var(--tile-shadow)!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+.work>.top:before,.work>.top:after{display:none}
+.top .profile-pills{background:#F3F4F8!important;border:0!important;border-radius:18px;box-shadow:none!important}
+.search{background-color:#F3F4F8!important;border:1px solid transparent!important;border-radius:16px;box-shadow:none}
+.search:focus{background-color:#fff!important;border-color:#2F6BFF!important;box-shadow:0 0 0 4px rgba(47,107,255,.15)}
+.clinical-avatar{background:#fff!important;box-shadow:0 0 0 2px #E3E6EC,0 6px 16px rgba(15,23,42,.1)}
+.clinical-profile.selected .clinical-avatar{box-shadow:0 0 0 3px #2F6BFF,0 0 0 7px rgba(47,107,255,.18),0 10px 24px rgba(47,107,255,.3)}
+.clinical-profile.selected .clinical-avatar-wrap:after{border-color:rgba(47,107,255,.5)}
+.camera-badge{background:#2F6BFF!important}.camera-badge:hover{background:#0F172A!important}
+
+/* ---------- Headings ---------- */
+.heading h1{font-size:clamp(28px,3.1vw,40px);font-weight:800;letter-spacing:-.035em;background:none;color:#0F172A;-webkit-text-fill-color:#0F172A}
+.heading p{color:#64748B}
+.heading .eyebrow{display:inline-flex;background:#E6EEFF;color:#2F6BFF;padding:5px 12px;border-radius:99px;font-size:11.5px;font-weight:700;letter-spacing:.09em}
+.heading .eyebrow:before{display:none}
+.panel h2,.quick h2,.modal h2{font-weight:800;letter-spacing:-.02em}
+
+/* ---------- Every card is a bento tile ---------- */
+.panel,.stat,.record,.overview-inline,.care-doctor,.doctor-card{background:#fff!important;border:1px solid var(--line)!important;border-radius:26px;box-shadow:var(--tile-shadow)!important;-webkit-backdrop-filter:none;backdrop-filter:none;outline:none}
+.panel{padding:26px}
+.family div,.photo-editor{background:#F6F7FA!important;border:1px solid transparent!important;border-radius:16px;box-shadow:none!important;-webkit-backdrop-filter:none;backdrop-filter:none}
+.panel .record,.overview-inline .record,.panel .family div{background:#F6F7FA!important;border:0!important;box-shadow:none!important;border-radius:18px}
+.panel:hover,.overview-inline:hover,.stat:hover,.record:hover,.care-doctor:hover,.doctor-card:hover{background:#fff!important;border-color:#D5DAE3!important;box-shadow:var(--tile-shadow-hi)!important}
+.stat:hover,.record:hover,.care-doctor:hover{transform:translateY(-5px) scale(1.012)}
+.stat:before,.record:before{display:none}
+.mini{border-top:0;border-radius:16px;padding:12px 12px;margin:2px 0;transition:background .25s,transform .35s var(--spring)}
+.mini:hover{background:#F3F6FF;padding-left:12px;transform:translateX(4px)}
+.mini em{color:#94A3B8}.mini:hover em{color:#2F6BFF}
+.empty{background:#F6F7FA;border-radius:20px;border:1px dashed #CBD2DE}
+.empty i{background:#fff;box-shadow:0 8px 20px rgba(15,23,42,.08)}
+
+/* icon chips in soft colour fills */
+.stats>*:nth-child(6n+1),.list>*:nth-child(6n+1){--c1:#2F6BFF;--c2:#1E4FD8;--s1:#E6EEFF;--s2:#CFDDFF}
+.stats>*:nth-child(6n+2),.list>*:nth-child(6n+2){--c1:#12A37F;--c2:#0B7A5E;--s1:#DDF6EC;--s2:#BDEBD8}
+.stats>*:nth-child(6n+3),.list>*:nth-child(6n+3){--c1:#E69500;--c2:#B26F00;--s1:#FFF1CF;--s2:#FFE19A}
+.stats>*:nth-child(6n+4),.list>*:nth-child(6n+4){--c1:#0EA5E9;--c2:#0A7CB0;--s1:#DFF3FD;--s2:#BCE5F8}
+.stats>*:nth-child(6n+5),.list>*:nth-child(6n+5){--c1:#EA580C;--c2:#B84209;--s1:#FFE9DC;--s2:#FFD2B8}
+.stats>*:nth-child(6n+6),.list>*:nth-child(6n+6){--c1:#475569;--c2:#2F3A4C;--s1:#E8ECF2;--s2:#D3DAE5}
+.stat i,.record-icon{background:var(--s1,#E6EEFF);color:var(--c1,#2F6BFF);border-radius:16px;box-shadow:none}
+.stat:hover i,.record:hover .record-icon,.mini:hover .record-icon{background:var(--c1,#2F6BFF);color:#fff;transform:rotate(-8deg) scale(1.1);box-shadow:0 10px 22px rgba(15,23,42,.18)}
+.stat b{background:none;color:inherit;-webkit-text-fill-color:currentColor}
+
+/* ---------- Buttons ---------- */
+.primary,.auth-card button{background:linear-gradient(135deg,#2F6BFF,#1E4FD8)!important;border:0!important;border-radius:16px;color:#fff;box-shadow:0 12px 26px rgba(47,107,255,.38)}
+.primary:hover,.auth-card button:hover{box-shadow:0 18px 36px rgba(47,107,255,.5);filter:none}
+.panel-head button,.secondary,.actions button,.health-area-head button,.modal footer button,.health-tabs .add-area-tab,.clinical-actions button{background:#fff!important;border:1px solid var(--line)!important;border-radius:14px;color:#0F172A!important;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;font-weight:600}
+.panel-head button:hover,.secondary:hover,.actions button:hover,.health-area-head button:hover,.modal footer button:hover,.clinical-actions button:hover{background:#F3F6FF!important;border-color:#2F6BFF!important;color:#2F6BFF!important;box-shadow:0 8px 18px rgba(47,107,255,.14)}
+.actions button:last-child:hover{background:#FEECEC!important;border-color:#F3B4B4!important;color:#C73A3A!important}
+.health-tabs .stat{background:#fff!important;border:1px solid var(--line)!important;border-radius:16px;box-shadow:none!important;transform:none}
+.health-tabs .stat.inline-active{background:#E6EEFF!important;border-color:#2F6BFF!important}
+.health-tabs .stat:hover{transform:none;box-shadow:none!important}
+
+/* ---------- THE BENTO LAYOUT: overview ---------- */
+#app:has(>.grid){display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:18px;grid-auto-flow:dense;align-items:stretch}
+#app:has(>.grid)>.stats,#app:has(>.grid)>.grid{display:contents}
+#app:has(>.grid)>.welcome-row,#app:has(>.grid)>.heading{grid-column:1/-1;margin:0 0 4px}
+#app:has(>.grid)>.stats>.stat{display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:22px;text-align:left;min-width:0;min-height:150px;padding:24px;position:relative;overflow:hidden;color:#0F172A}
+#app:has(>.grid)>.stats>.stat>*{position:relative;z-index:1}
+#app:has(>.grid)>.stats>.stat b{display:flex;flex-direction:column;align-items:flex-start;gap:4px;font:800 46px/1 "Inter","Segoe UI",system-ui,sans-serif;letter-spacing:-.04em;transform-origin:left bottom;transition:transform .5s var(--spring)}
+#app:has(>.grid)>.stats>.stat:hover b{transform:scale(1.06)}
+#app:has(>.grid)>.stats>.stat b small{font:600 14px/1.25 "Inter","Segoe UI",system-ui,sans-serif;letter-spacing:0;opacity:.72}
+#app:has(>.grid)>.stats>.stat:after{content:'';position:absolute;inset:-45%;pointer-events:none;background:radial-gradient(circle at 70% 25%,rgba(255,255,255,.55),transparent 42%);animation:heroGlow 9s ease-in-out infinite;z-index:0}
+/* hero tile: tall, bold blue */
+#app:has(>.grid)>.stats>.stat:nth-child(1){grid-column:span 4;grid-row:span 2;background:linear-gradient(150deg,#2F6BFF 0%,#1E3FBF 60%,#16308F 100%)!important;border:0!important;color:#fff;padding:30px;box-shadow:0 24px 50px rgba(47,107,255,.38)!important}
+#app:has(>.grid)>.stats>.stat:nth-child(1) b{font-size:104px;gap:8px}
+#app:has(>.grid)>.stats>.stat:nth-child(1) b small{font-size:17px;opacity:.85}
+#app:has(>.grid)>.stats>.stat:nth-child(1) i{width:60px;height:60px;font-size:26px;border-radius:20px;background:rgba(255,255,255,.2);color:#fff;animation:bobble 4.5s ease-in-out infinite}
+#app:has(>.grid)>.stats>.stat:nth-child(1):hover{box-shadow:0 32px 64px rgba(47,107,255,.5)!important}
+#app:has(>.grid)>.stats>.stat:nth-child(1):hover i{background:#fff;color:#2F6BFF}
+#app:has(>.grid)>.stats>.stat:nth-child(2){grid-column:span 4;background:#DDF6EC!important;border-color:#BDEBD8!important}
+#app:has(>.grid)>.stats>.stat:nth-child(3){grid-column:span 4;background:#FFF1CF!important;border-color:#FFE19A!important}
+#app:has(>.grid)>.stats>.stat:nth-child(2) i,#app:has(>.grid)>.stats>.stat:nth-child(3) i{background:rgba(255,255,255,.7)}
+#app:has(>.grid)>.stats>.stat:nth-child(2):hover i{background:#12A37F;color:#fff}
+#app:has(>.grid)>.stats>.stat:nth-child(3):hover i{background:#E69500;color:#fff}
+#app:has(>.grid)>.grid>.panel:nth-child(1){grid-column:span 8}
+#app:has(>.grid)>.grid>.panel:nth-child(2){grid-column:span 7;background:linear-gradient(160deg,#EAF1FF,#F8FAFF)!important;border-color:#D4E1FF!important}
+#app:has(>.grid)>.grid>.panel:nth-child(2) .mini,#app:has(>.grid)>.grid>.panel:nth-child(2) .record{background:rgba(255,255,255,.7)!important}
+#app:has(>.grid)>.quick{grid-column:span 5;margin:0;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:22px;padding:28px;background-color:#111827!important;background-image:radial-gradient(circle at 100% 0%,rgba(47,107,255,.55),transparent 55%),radial-gradient(circle at 0% 100%,rgba(18,163,127,.3),transparent 50%)!important;border:0!important;border-radius:28px;color:#fff;box-shadow:0 24px 50px rgba(15,23,42,.28)!important;outline:none;-webkit-backdrop-filter:none;backdrop-filter:none;animation:bentoIn .7s var(--spring) .56s backwards}
+#app:has(>.grid)>.quick>div:last-child{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%}
+.quick h2{color:#fff}.quick p{color:#A7B3C9}
+.quick button{background:rgba(255,255,255,.1)!important;color:#fff!important;border:1px solid rgba(255,255,255,.2)!important;border-radius:14px;box-shadow:none!important;-webkit-backdrop-filter:none;backdrop-filter:none}
+.quick button:hover{background:#fff!important;color:#0F172A!important;border-color:#fff!important;box-shadow:0 10px 22px rgba(0,0,0,.25)!important}
+.quick:after{background:linear-gradient(100deg,transparent,rgba(255,255,255,.12),transparent)}
+#app:has(>.grid)>.grid>.panel:nth-child(1){animation-delay:.42s}
+#app:has(>.grid)>.grid>.panel:nth-child(2){animation-delay:.5s}
+#app:has(>.grid)>.stats>.stat:nth-child(2){animation-delay:.26s}
+#app:has(>.grid)>.stats>.stat:nth-child(3){animation-delay:.34s}
+
+/* ---------- Bento: record lists (Medicines / Doctors / Tests) ---------- */
+#app>.list{grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;grid-auto-flow:dense}
+#app>.list>.record{flex-wrap:wrap;padding:24px;align-items:flex-start;gap:16px}
+#app>.list>.record .actions{width:100%;justify-content:flex-end}
+#app>.list>.record:nth-child(5n+1){grid-column:span 2}
+#app>.list>.record:nth-child(7n+4){background:var(--s1,#F6F7FA)!important;border-color:var(--s2,#E3E6EC)!important}
+#app>.list>.empty,#app>.list>.record:only-child{grid-column:1/-1}
+
+/* ---------- Bento: profile ---------- */
+.profile{grid-template-columns:repeat(12,minmax(0,1fr));gap:18px;grid-auto-flow:dense}
+.profile>*:nth-child(4n+1){grid-column:span 7}
+.profile>*:nth-child(4n+2){grid-column:span 5}
+.profile>*:nth-child(4n+3){grid-column:span 5}
+.profile>*:nth-child(4n+4){grid-column:span 7}
+
+/* ---------- Motion: tiles spring in ---------- */
+#app>*,.stats>*,.grid>*,.profile>*,.list>*{animation-name:bentoIn;animation-duration:.75s;animation-timing-function:var(--spring)}
+.care-doctor-icon,.person i,.auth-mark{background:linear-gradient(135deg,#2F6BFF,#18A0FB)!important;color:#fff!important;border-radius:18px;box-shadow:0 12px 26px rgba(47,107,255,.4)}
+.care-doctor:after{background:radial-gradient(circle,rgba(47,107,255,.14),transparent 68%)}
+
+/* ---------- Modal ---------- */
+.shade{background:rgba(15,23,42,.45)!important;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.modal{background:#fff!important;border:1px solid var(--line);border-radius:30px;box-shadow:0 40px 90px rgba(15,23,42,.3);outline:none;animation:bentoIn .55s var(--spring) both;-webkit-backdrop-filter:none;backdrop-filter:none}
+.modal>header{background:#F6F7FA;border-bottom:0}
+.modal>header:after{display:none}
+.modal header button{background:#fff;border:1px solid var(--line);border-radius:14px}
+.modal header button:hover{background:#FEECEC;color:#C73A3A}
+.form input,.form select,.form textarea,.modal input,.modal select,.modal textarea{background:#F6F7FA;border:1px solid transparent;border-radius:14px;box-shadow:none}
+.form input:focus,.form select:focus,.form textarea:focus,.modal input:focus,.modal select:focus,.modal textarea:focus{background:#fff;border-color:#2F6BFF;box-shadow:0 0 0 4px rgba(47,107,255,.15)}
+.photo-editor:hover{background:#F3F6FF!important;border-color:#2F6BFF!important}
+
+/* ---------- Mobile nav & misc ---------- */
+.bottom{background:rgba(255,255,255,.92)!important;border-top:1px solid var(--line);border-radius:26px 26px 0 0;box-shadow:0 -12px 36px rgba(15,23,42,.1)}
+.bottom button.active{color:#2F6BFF}.bottom button.active:before{background:#2F6BFF;border-radius:0 0 6px 6px}
+.sync-toast{background:#0F172A!important;color:#fff!important;border:0!important;border-radius:16px}
+
+/* ---------- Sign-in ---------- */
+.auth-gate{background:radial-gradient(circle at 18% 20%,rgba(47,107,255,.28),transparent 42%),radial-gradient(circle at 84% 84%,rgba(18,163,127,.22),transparent 42%),#EEF0F4}
+.auth-gate:before{background:#2F6BFF;opacity:.3}.auth-gate:after{background:#12A37F;opacity:.26}
+.auth-card{background:#fff!important;border:1px solid var(--line);border-radius:32px;color:#0F172A;box-shadow:0 30px 70px rgba(15,23,42,.18);-webkit-backdrop-filter:none;backdrop-filter:none;outline:none}
+.auth-card h1{background:none;color:#0F172A;-webkit-text-fill-color:#0F172A;font-weight:800;letter-spacing:-.035em}
+.auth-card p{color:#2F6BFF;font-weight:700}.auth-card span{color:#64748B}
+.auth-mark:after{border-color:#2F6BFF;border-radius:18px}
+
+/* ---------- Responsive bento ---------- */
+@media(max-width:1100px){
+ #app:has(>.grid){grid-template-columns:repeat(6,minmax(0,1fr))}
+ #app:has(>.grid)>.stats>.stat:nth-child(1){grid-column:span 6;grid-row:span 1;min-height:190px}
+ #app:has(>.grid)>.stats>.stat:nth-child(1) b{font-size:80px}
+ #app:has(>.grid)>.stats>.stat:nth-child(2),#app:has(>.grid)>.stats>.stat:nth-child(3){grid-column:span 3}
+ #app:has(>.grid)>.grid>.panel:nth-child(1),#app:has(>.grid)>.grid>.panel:nth-child(2),#app:has(>.grid)>.quick{grid-column:span 6}
+ .profile{grid-template-columns:1fr}.profile>*{grid-column:auto!important}
+}
+@media(max-width:650px){
+ #app:has(>.grid){grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ #app:has(>.grid)>.stats>.stat:nth-child(1),#app:has(>.grid)>.grid>.panel:nth-child(1),#app:has(>.grid)>.grid>.panel:nth-child(2),#app:has(>.grid)>.quick{grid-column:span 2}
+ #app:has(>.grid)>.stats>.stat:nth-child(2),#app:has(>.grid)>.stats>.stat:nth-child(3){grid-column:span 1;min-height:130px;padding:18px}
+ #app:has(>.grid)>.stats>.stat b{font-size:36px}
+ #app>.list{grid-template-columns:1fr}#app>.list>.record:nth-child(5n+1){grid-column:auto}
+ .panel{padding:20px}
+}
 </style>
 </body></html>
